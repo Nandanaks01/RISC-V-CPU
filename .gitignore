@@ -1,0 +1,76 @@
+# RISC-V CPU Core - Git Ignore File
+
+# Simulation directories
+sim/
+work/
+transcript
+vsim.wlf
+*.wlf
+
+# Synthesis outputs
+synth/
+*.log
+*.rpt
+
+# Waveform files
+*.vcd
+*.ghw
+*.fst
+*.saif
+
+# ModelSim
+*.mti
+*.mpf
+modelsim.ini
+
+# Vivado/Xilinx
+*.jou
+*.str
+*.xpr
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+vivado*.log
+
+# Yosys
+*.blif
+*.edif
+*.json
+
+# Verilator
+obj_dir/
+*.d
+*.o
+
+# Temporary files
+*~
+*.swp
+*.swo
+*.bak
+.DS_Store
+Thumbs.db
+
+# Python (if used for scripts)
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Build artifacts
+*.bin
+*.elf
+*.hex~
+*.lst
+*.map
+*.mem
+*.out
+
+# Editor configs
+.vscode/
+.idea/
+*.sublime-*
+
+# OS files
+.directory
+desktop.ini

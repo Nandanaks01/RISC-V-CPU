@@ -1,0 +1,66 @@
+// RISC-V RV32I Test Program (Machine Code in Hex)
+// This program tests basic arithmetic, logic, load/store, and branch instructions
+
+// Initialize registers
+00500093  // addi x1, x0, 5      ; x1 = 5
+00A00113  // addi x2, x0, 10     ; x2 = 10
+00F00193  // addi x3, x0, 15     ; x3 = 15
+
+// Arithmetic operations
+002081B3  // add  x3, x1, x2     ; x3 = x1 + x2 = 15
+40208233  // sub  x4, x1, x2     ; x4 = x1 - x2 = -5
+002092B3  // sll  x5, x1, x2     ; x5 = x1 << (x2 & 0x1F) = 5120
+0020A333  // slt  x6, x1, x2     ; x6 = (x1 < x2) = 1
+0020B3B3  // sltu x7, x1, x2     ; x7 = (x1 < x2 unsigned) = 1
+
+// Logical operations
+0020C413  // xor  x8, x1, x2     ; x8 = x1 ^ x2 = 15
+0020D493  // srl  x9, x1, x2     ; x9 = x1 >> (x2 & 0x1F) = 0
+0020E513  // or   x10, x1, x2    ; x10 = x1 | x2 = 15
+0020F593  // and  x11, x1, x2    ; x11 = x1 & x2 = 0
+
+// Immediate operations
+00A08613  // addi x12, x1, 10    ; x12 = x1 + 10 = 15
+00109693  // slli x13, x1, 1     ; x13 = x1 << 1 = 10
+0010D713  // srli x14, x1, 1     ; x14 = x1 >> 1 = 2
+00C0C793  // xori x15, x1, 12    ; x15 = x1 ^ 12 = 9
+
+// Load Upper Immediate
+12345837  // lui  x16, 0x12345   ; x16 = 0x12345000
+ABCDE8B7  // lui  x17, 0xABCDE   ; x17 = 0xABCDE000
+
+// Store operations (store to data memory)
+00102023  // sw   x1, 0(x0)      ; mem[0] = x1 = 5
+00202223  // sw   x2, 4(x0)      ; mem[4] = x2 = 10
+00302423  // sw   x3, 8(x0)      ; mem[8] = x3 = 15
+
+// Load operations
+00002903  // lw   x18, 0(x0)     ; x18 = mem[0] = 5
+00402983  // lw   x19, 4(x0)     ; x19 = mem[4] = 10
+00802A03  // lw   x20, 8(x0)     ; x20 = mem[8] = 15
+
+// Branch test
+00208A63  // beq  x1, x2, skip   ; if (x1 == x2) skip (not taken)
+00500A93  // addi x21, x0, 5     ; x21 = 5 (executed)
+
+// skip:
+001B0B13  // addi x22, x22, 1    ; x22 = x22 + 1
+
+// Branch taken test
+00000B93  // addi x23, x0, 0     ; x23 = 0
+00100C13  // addi x24, x0, 1     ; x24 = 1
+018B8463  // beq  x23, x24, end  ; if (x23 == x24) end (not taken)
+00200C93  // addi x25, x0, 2     ; x25 = 2 (executed)
+
+// Jump test
+// end:
+008000EF  // jal  x1, finish     ; jump to finish, x1 = return addr
+
+// Should not execute
+00300D13  // addi x26, x0, 3     ; x26 = 3 (skipped)
+
+// finish:
+00400D93  // addi x27, x0, 4     ; x27 = 4
+
+// Infinite loop to halt
+0000006F  // jal  x0, .          ; infinite loop (jump to self)
