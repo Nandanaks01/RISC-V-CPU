@@ -303,9 +303,9 @@ This project is for educational and portfolio purposes.
 ## Author
 
 Your Name
-- Email: your.email@example.com
-- GitHub: github.com/yourusername
-- LinkedIn: linkedin.com/in/yourprofile
+- Email: nandanaks01@gmail.com
+- GitHub: github.com/Nandanaks01
+- LinkedIn: linkedin.com/in/nandanasubash
 
 ## Acknowledgments
 
